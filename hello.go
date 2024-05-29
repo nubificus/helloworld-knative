@@ -50,6 +50,21 @@ const htmlTemplate = `
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serverless Demo</title>
+        <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
 </head>
 <body>
 <h1> Hello <img src="data:image/png;base64,{{.Image1}}" alt="OpenInfra Logo" height="60px"/>
@@ -58,17 +73,35 @@ const htmlTemplate = `
     </h2>
     <img src="{{.Image3}}" alt="Runtime Class" height="100px" />
     <h1>Request Headers</h1>
+    <table>
+        <tr>
+            <th>Header</th>
+            <th>Value</th>
+        </tr>
+        {{range .Headers}}
+        <tr>
+            <td>{{.Key}}</td>
+            <td>{{ .Value | safeHTML }}</td>
+        </tr>
+        {{end}}
+    </table>
+
+    <!--<h1>Request Headers</h1>
     <ul>
     {{range .Headers}}
         <li><strong>{{.Key}}:</strong> {{.Value}}</li>
     {{end}}
-    </ul>
+    </ul>-->
     <h2> Brought to you by 
     </h2>
     <img src="data:image/png;base64,{{.Image2}}" alt="Nubificus LTD"/>
 </body>
 </html>
 `
+
+func safeHTML(s string) template.HTML {
+    return template.HTML(s)
+}
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("On my way to unikernels!!!")
@@ -109,7 +142,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Parse and execute the template
-	tmpl, err := template.New("page").Parse(htmlTemplate)
+	tmpl, err := template.New("page").Funcs(template.FuncMap{"safeHTML": safeHTML}).Parse(htmlTemplate)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
