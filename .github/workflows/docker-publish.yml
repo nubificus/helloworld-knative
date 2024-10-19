@@ -2,7 +2,7 @@ name: Docker build & push
 
 on:
   push:
-    branches: [ main, feat_oidemo ]
+    branches: [ main, feat_camad]
     tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ main ]
@@ -11,7 +11,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: harbor.nbfc.io/nubificus
   # github.repository as <account>/<repo>
-  IMAGE_NAME: httpreply-oi
+  IMAGE_NAME: httpreply-camad
   #${{ github.repository }}
 
 
