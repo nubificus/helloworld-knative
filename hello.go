@@ -32,6 +32,7 @@ const (
 	imageQEMUURL        	= "https://s3.nbfc.io/hypervisor-logos/qemu.png"
 	imageCLHURL        	= "https://s3.nbfc.io/hypervisor-logos/clh.png"
 	imageRSURL        	= "https://s3.nbfc.io/hypervisor-logos/dragonball.png"
+	imageFOSSCOMMURL 	= "https://s3.nbfc.io/hypervisor-logos/fosscomm.png"
 	imageContainerURL       = "https://s3.nbfc.io/hypervisor-logos/container.png"
 )
 
@@ -66,7 +67,7 @@ const htmlTemplate = `
 </head>
 </head>
 <body>
-<h1> Hello <img src="data:image/png;base64,{{.Image1}}" alt="CAMAD Logo" height="60px"/>
+<h1> Hello <img src="{{.Image1}}" alt="FOSSCOMM Logo" height="100px"/>
     </h1>
     <h2> RuntimeClass
     </h2>
@@ -131,11 +132,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		imageURL = imageContainerURL // Default image or error image if needed
 	}
-
-
+	var imageURL1 string
+	
+	imageURL1 = imageFOSSCOMMURL
 	data := PageData{
 		Headers: headers,
-		Image1:   imageData1,
+		Image1:   imageURL1,
 		Image2:   imageData2,
 		Image3:   imageURL,
 	}
