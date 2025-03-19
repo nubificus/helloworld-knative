@@ -32,7 +32,7 @@ const (
 	imageQEMUURL        	= "https://s3.nbfc.io/hypervisor-logos/qemu.png"
 	imageCLHURL        	= "https://s3.nbfc.io/hypervisor-logos/clh.png"
 	imageRSURL        	= "https://s3.nbfc.io/hypervisor-logos/dragonball.png"
-	imageHIPEACURL 	= "https://s3.nbfc.io/hypervisor-logos/hipeac.png"
+	imageHIPEACURL 	= "https://s3.nbfc.io/hypervisor-logos/athk8s.png"
 	imageContainerURL       = "https://s3.nbfc.io/hypervisor-logos/container.png"
 )
 
