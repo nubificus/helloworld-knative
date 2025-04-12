@@ -64,7 +64,16 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 	const replyTemplate = `
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Request Headers</title></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Request Headers</title>
+<style>
+body { font-family: sans-serif; margin: 20px; }
+h1, h2 { margin-bottom: 10px; }
+.logo-row { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
+.logo-row img { max-width: 100%%; height: auto; max-height: 120px; }
+.header-list { list-style: none; padding: 0; }
+.header-list li { margin: 5px 0; padding: 8px; background: #f2f2f2; border-radius: 5px; }
+</style>
+</head>
 <body>
 <h1>Hello from Knative!</h1>
 <div class="logo-row">
